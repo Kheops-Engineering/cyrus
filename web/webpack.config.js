@@ -31,9 +31,10 @@ const assets = [
   },
   {
     from: 'src/*.html',
-    to: '/html'
+    to: '.'
   }
 ];
+
 const plugins = [
   new CleanWebpackPlugin(),
   new webpack.ProgressPlugin(),
@@ -55,7 +56,7 @@ const plugins = [
 module.exports = ({mode, presets}) => {
   return webpackMerge({
         entry: {
-          app: resolve(__dirname, './src/index.ts')
+          app: resolve(__dirname, './src/index.js')
         },
         externals: {
           'appProperties': JSON.stringify(appProperties)
@@ -66,7 +67,7 @@ module.exports = ({mode, presets}) => {
           publicPath: '/',
         },
         resolve: {
-          extensions: [".tsx", ".ts", ".js"],
+          extensions: [".tsx", ".ts", ".js", "sass"],
           modules: [
             resolve(__dirname, 'node_modules'),
             resolve(__dirname, '../node_modules'),
@@ -79,7 +80,8 @@ module.exports = ({mode, presets}) => {
             exclude: /node_modules/,
             loader: 'babel-loader',
             options: {
-              plugins: ['@babel/plugin-syntax-dynamic-import'],
+              plugins: ['@babel/plugin-syntax-dynamic-import',
+                ["@babel/plugin-proposal-decorators", {"decoratorsBeforeExport": true}]],
               presets: [[
                 '@babel/preset-env',
                 {
@@ -88,9 +90,14 @@ module.exports = ({mode, presets}) => {
                 }
               ]]
             }
-          }]
+          }, {
+            test: /\.css|\.s(c|a)ss$/,
+            use: [{
+              loader: 'lit-scss-loader',
+            }, 'extract-loader', 'css-loader', 'sass-loader'],
+          },]
         },
         plugins
-      }
+      },
   ); //webpackMerge
 };

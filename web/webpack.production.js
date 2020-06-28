@@ -3,10 +3,16 @@ module.exports = () => ({
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
-      }
+        test: /\.css|\.s(c|a)ss$/,
+        use: [MiniCssExtractPlugin.loader, 'style-loader', 'css-loader', 'extract-loader', 'sass-loader', 'lit-scss-loader',
+          {
+            loader: 'lit-scss-loader',
+            options: {
+              minify: true, // defaults to false
+            },
+          }, 'extract-loader', 'css-loader', 'sass-loader'],
+      },
     ]
   },
-  plugins: [new MiniCssExtractPlugin()]
+  plugins: [new MiniCssExtractPlugin()],
 });

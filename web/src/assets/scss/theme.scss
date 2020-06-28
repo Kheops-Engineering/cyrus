@@ -1,0 +1,35 @@
+/* SCSS HEX */
+$space-cadet: #2d3047;
+$canary: #fffd82;
+$green-sheen: #88b7b5ff;
+$light-salmon: #ff9b71ff;
+$red-crayola: #e84855ff;
+$independence: #344966;
+$baby-pink: #dfbbb1ff;
+$fiery-rose: #f56476ff;
+$green-lizard: #affc41ff;
+
+/* SCSS Gradient */
+$gradient-top: linear-gradient(0deg, #2d3047ff, #fffd82ff, #88b7b5ff, #ff9b71ff, #e84855ff);
+$gradient-right: linear-gradient(90deg, #2d3047ff, #fffd82ff, #88b7b5ff, #ff9b71ff, #e84855ff);
+$gradient-bottom: linear-gradient(180deg, #2d3047ff, #fffd82ff, #88b7b5ff, #ff9b71ff, #e84855ff);
+$gradient-left: linear-gradient(270deg, #2d3047ff, #fffd82ff, #88b7b5ff, #ff9b71ff, #e84855ff);
+$gradient-top-right: linear-gradient(45deg, #2d3047ff, #fffd82ff, #88b7b5ff, #ff9b71ff, #e84855ff);
+$gradient-bottom-right: linear-gradient(135deg, #2d3047ff, #fffd82ff, #88b7b5ff, #ff9b71ff, #e84855ff);
+$gradient-top-left: linear-gradient(225deg, #2d3047ff, #fffd82ff, #88b7b5ff, #ff9b71ff, #e84855ff);
+$gradient-bottom-left: linear-gradient(315deg, #2d3047ff, #fffd82ff, #88b7b5ff, #ff9b71ff, #e84855ff);
+$gradient-radial: radial-gradient(#2d3047ff, #fffd82ff, #88b7b5ff, #ff9b71ff, #e84855ff);
+
+$theme-colors: (
+        "primary": $green-sheen,
+        "secondary": $canary,
+        "success": $green-lizard,
+        "info": $independence,
+        "dark": $space-cadet,
+        "warning": $light-salmon,
+        "danger": $red-crayola,
+);
+
+.abc {
+  background: #0d0d0d;
+}

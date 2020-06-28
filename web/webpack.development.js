@@ -2,10 +2,11 @@ module.exports = () => ({
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      }
+        test: /\.css|\.s(c|a)ss$/,
+        use: [{
+          loader: 'lit-scss-loader',
+        }, 'extract-loader', 'css-loader', 'sass-loader'],
+      },
     ]
   },
-  devtool: 'source-map'
 });
