@@ -4,22 +4,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackMerge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const webcomponentsjs = './node_modules/@webcomponents/webcomponentsjs';
+const webcomponentsjs = '../node_modules/@webcomponents/webcomponentsjs';
 const PropertiesReader = require('properties-reader');
-const appProperties = PropertiesReader('./src/assets/app.properties')._properties;
+const appProperties = PropertiesReader('./src/app.properties')._properties;
 const polyfills = [
   {
-    from: resolve(`${webcomponentsjs}/webcomponents-*.{js,map}`),
+    from: resolve(__dirname, `${webcomponentsjs}/webcomponents-*.{js,map}`),
     to: 'vendor',
     flatten: true,
   },
   {
-    from: resolve(`${webcomponentsjs}/bundles/*.{js,map}`),
+    from: resolve(__dirname, `${webcomponentsjs}/bundles/*.{js,map}`),
     to: 'vendor/bundles',
     flatten: true,
   },
   {
-    from: resolve(`${webcomponentsjs}/custom-elements-es5-adapter.js`),
+    from: resolve(__dirname, `${webcomponentsjs}/custom-elements-es5-adapter.js`),
     to: 'vendor',
     flatten: true,
   }
@@ -31,7 +31,7 @@ const assets = [
   },
   {
     from: 'src/*.html',
-    to: '/'
+    to: '/html'
   }
 ];
 const plugins = [
@@ -55,7 +55,7 @@ const plugins = [
 module.exports = ({mode, presets}) => {
   return webpackMerge({
         entry: {
-          app: './src/index.js'
+          app: resolve(__dirname, './src/index.ts')
         },
         externals: {
           'appProperties': JSON.stringify(appProperties)
@@ -65,9 +65,17 @@ module.exports = ({mode, presets}) => {
           filename: '[name].[chunkhash:8].js',
           publicPath: '/',
         },
+        resolve: {
+          extensions: [".tsx", ".ts", ".js"],
+          modules: [
+            resolve(__dirname, 'node_modules'),
+            resolve(__dirname, '../node_modules'),
+            'node_modules'
+          ]
+        },
         module: {
           rules: [{
-            test: /\.js$/,
+            test: /\.(js|ts)$/,
             exclude: /node_modules/,
             loader: 'babel-loader',
             options: {
