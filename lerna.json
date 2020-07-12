@@ -1,6 +1,6 @@
 {
   "lerna": "2.8.0",
-  "packages": ["web"],
+  "packages": ["cyrus-web"],
   "npmClient": "yarn",
   "useWorkspaces": true,
   "version": "1.0.0"

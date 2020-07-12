@@ -4,8 +4,9 @@
     "clean": "lerna clean",
     "bootstrap": "lerna bootstrap",
     "test": "CI=true lerna run test --stream",
+    "dev": "lerna run --parallel dev",
     "start": "lerna run --parallel start",
-    "prepare": "rimraf web/dist && rimraf common/dist && lerna run prepare",
+    "prepare": "rimraf cyrus-web/dist && rimraf common/dist && lerna run prepare",
     "build": "npm run prepare && lerna run --parallel build"
   },
   "devDependencies": {
@@ -15,7 +16,7 @@
     "typescript": "^3.9.5"
   },
   "workspaces": [
-    "web",
+    "cyrus-web",
     "ui-common",
     "ui-components"
   ]
